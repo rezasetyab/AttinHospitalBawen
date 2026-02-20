@@ -10,10 +10,12 @@ const Nav = () => {
                 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                <img src="/image/logo.svg" alt="logo" className="h-10" />
-                <h3 className="font-bold text-sm md:text-lg">
-                    AT-TIN HOSPITAL
-                </h3>
+                    <div className="w-fit h-fit rounded-full bg-white">
+                        <img src="/image/Logo-Attin.png" alt="logo" className="h-[43px]" />
+                    </div>
+                    <h3 className="font-bold text-sm md:text-lg">
+                        AT-TIN HOSPITAL
+                    </h3>
                 </div>
 
                 {/* Menu Desktop */}
