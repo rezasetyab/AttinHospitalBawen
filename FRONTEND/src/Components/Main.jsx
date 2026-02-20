@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -20,6 +20,36 @@ const layanan = [
     nama: "RADIOLOGI",
     deskripsi: "Melayani dengan Senang Hati",
     image: "/image/RADIOLOGI.jpg",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
+  },
+  {
+    nama: "LAB",
+    deskripsi: "Melayani dengan Senang Hati",
+    image: "/image/LAB.png",
   },
   {
     nama: "LAB",
@@ -251,35 +281,75 @@ const Main = () => {
 
   const [selectedPoli, setSelectedPoli] = useState(null);
   const [showPoli, setShowPoli] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
+  const [showLayan, setShowLayan] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640); // sm Tailwind = 640px
+    };
+
+    handleResize(); // cek awal
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const dataTampil = showPoli
+    ? poliklinik
+    : poliklinik.slice(0, isMobile ? 4 : 9);
+
+  const dataTampilLayan = showLayan
+    ? layanan
+    : layanan.slice(0, isMobile ? 2 : 6)
+
 
   return (
     <>
       {/* Section Home/Beranda */}
       <section className="w-full min-h-screen relative flex items-center bg-[url('/image/AttinDpn.JPG')] bg-cover bg-center">
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative container mx-auto flex flex-col lg:flex-row items-center gap-8 px-6 py-24">
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50"></div>
+
+        <div className="relative container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 px-4 sm:px-6 lg:px-12 py-20">
+          
           {/* Kiri */}
-          <div className="flex flex-col px-[50px] pt-[60px] max-w-[600px] text-white">
-            <h1 className="text-4xl font-bold text-white">Selamat Datang Di</h1>
-            <h1 className="font-extrabold text-blue-900 text-5xl">AT-TIN HOSPITAL</h1>
-            <p className="text-lg text-gray-100">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut ducimus placeat, ullam illum porro et iste sequi ut rem, vero libero sit officiis dignissimos eos quia. Natus eligendi ducimus omnis?</p>
-            
+          <div className="flex flex-col max-w-xl text-white text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl font-bold">
+              Selamat Datang Di
+            </h1>
+
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-800 mt-2">
+              AT-TIN HOSPITAL
+            </h1>
+
+            <p className="text-sm sm:text-base text-gray-200 mt-4">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ducimus
+              placeat, ullam illum porro et iste sequi ut rem.
+            </p>
+
             {/* Button */}
-            <div className="flex gap-4 mt-[20px]">
-              <button className="px-6 py-3 bg-blue-900 rounded-xl text-white font-bold">
+            <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center lg:justify-start">
+              <button className="px-6 py-3 bg-blue-900 hover:bg-blue-800 transition rounded-xl text-white font-semibold w-full sm:w-auto">
                 Buat Janji
               </button>
-              <div className="px-6 py-3 border border-white rounded-xl text-white font-bold">
+
+              <button className="px-6 py-3 border border-white hover:bg-white hover:text-black transition rounded-xl font-semibold w-full sm:w-auto">
                 Lihat Layanan
-              </div>
+              </button>
             </div>
-            <p className="mt-4 font-semibold">IGD 24 JAM ( +62 821 3591 6988 )</p>
-            <p className="text-sm text-gray-600">Alamat : Jl. Slamet Riyadi No.14 . . .</p>
+
+            <p className="mt-6 font-semibold text-sm sm:text-base">
+              IGD 24 JAM ( +62 821 3591 6988 )
+            </p>
+
+            <p className="text-xs sm:text-sm text-gray-200">
+              Alamat : Jl. Slamet Riyadi No.14 ...
+            </p>
           </div>
 
           {/* Kanan */}
-          <div className="bg-transparent rounded-2xl shadow-xl p-6 w-[450px] mt-[60px] space-y-4 text-white">
-            <h3 className="text-xl font-bold text-white mb-4">
+          <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-2xl shadow-xl p-6 space-y-4 text-white">
+            <h3 className="text-lg sm:text-xl font-bold mb-2 text-center lg:text-left">
               Layanan Unggulan
             </h3>
 
@@ -288,14 +358,14 @@ const Main = () => {
               "Rawat Jalan & Rawat Inap",
               "Laboratorium",
               "Radiologi",
-              "Vaksin Internasional"
+              "Vaksin Internasional",
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex items-center gap-3 p-3 border rounded-xl hover:bg-blue-100"
+                className="flex items-center gap-3 p-3 border border-white/30 rounded-xl hover:bg-blue-900 transition"
               >
                 <div className="w-3 h-3 bg-blue-900 rounded-full"></div>
-                <p className="font-medium">{item}</p>
+                <p className="font-medium text-sm sm:text-base">{item}</p>
               </div>
             ))}
           </div>
@@ -306,7 +376,7 @@ const Main = () => {
       <section className="w-full py-20 bg-gray-50">
         {/* Judul */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-blue-900">
+          <h1 className="text-xl md:text-3xl font-bold text-blue-900">
             Layanan Kami
           </h1>
           <p className="text-gray-600 mt-2">
@@ -316,7 +386,7 @@ const Main = () => {
 
         {/* Grid Layanan */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
-          {layanan.map((item, i) => (
+          {dataTampilLayan.map((item, i) => (
             <div
               key={i}
               className="bg-white rounded-2xl shadow-md p-6
@@ -347,6 +417,16 @@ const Main = () => {
             </div>
           ))}
         </div>
+        {/* Button Show More */}
+        {poliklinik.length > 9 && (
+          <div className="text-center mt-10">
+            <button
+              onClick={() => setShowLayan(!showLayan)}
+              className="px-6 py-3 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-800 transition"              >
+                {showLayan ? "Tampilkan Sedikit" : "Lihat Semua Poliklinik"}
+            </button>
+          </div>
+        )}
       </section>
 
 
@@ -354,7 +434,7 @@ const Main = () => {
       <section className="w-full py-20 bg-white">
         {/* Judul */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
+          <h2 className="text-xl md:text-3xl font-bold text-blue-900">
             Dokter Kami
           </h2>
           <p className="text-gray-600 mt-2">
@@ -415,43 +495,35 @@ const Main = () => {
       </section>
       
       {/* Section Poliklinik */}
-      <section className="w-full py-20 bg-blue-300 ">
+      <section className="w-full py-20 bg-[url('/image/POLI.JPG')] bg-cover bg-center">
         {/* Judul */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
+          <h2 className="text-xl md:text-3xl font-bold text-blue-900">
             Poliklinik Kami
           </h2>
-          <p className="text-gray-600 mt-2">
+          <p className="text-white mt-2 font-semibold">
             Layanan kesehatan sesuai kebutuhan Anda
           </p>
         </div>
 
         {/* Card */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-[100px] max-w-6xl mx-auto ">
-          {(showPoli ? poliklinik : poliklinik.slice(0, 9)).map((item) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-8 md:px-12 max-w-6xl mx-auto">
+          {dataTampil.map((item) => (
             <div
               key={item.id}
-              className="bg-gray-50 rounded-xl shadow-md p-6 text-center hover:shadow-xl transition"
+              className="bg-gray-50 rounded-xl shadow-md p-4 sm:p-6 text-center hover:shadow-xl transition h-full flex flex-col justify-between"
             >
-              {/* Icon 
-              <div className="text-5xl mb-4">
-                {item.icon}
-              </div> */}
-
-              {/* Nama */}
-              <h3 className="text-xl font-bold text-blue-900 mb-2">
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900 mb-2">
                 {item.nama}
               </h3>
 
-              {/* Deskripsi */}
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs sm:text-sm flex-grow">
                 {item.deskripsi}
               </p>
 
-              {/* Button */}
               <button
                 onClick={() => setSelectedPoli(item)}
-                className="mt-4 px-4 py-2 bg-blue-900 text-white rounded-lg text-sm hover:bg-blue-800 transition"
+                className="mt-4 px-3 py-2 sm:px-4 bg-blue-900 text-white rounded-lg text-xs sm:text-sm hover:bg-blue-800 transition"
               >
                 Lihat Detail
               </button>
@@ -475,7 +547,7 @@ const Main = () => {
       <section className="w-full py-20 bg-gray-50 px-[30px]">
         {/* Judul */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900">
+          <h2 className="text-xl md:text-3xl font-bold text-blue-900">
             Jadwal Praktek Dokter
           </h2>
           <p className="text-gray-600 mt-2">
@@ -523,8 +595,8 @@ const Main = () => {
                       className={`px-3 py-1 rounded-full text-sm font-semibold
                         ${
                           item.status === "Aktif"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
+                            ? "bg-green-100 text-blue-900"
+                            : "bg-red-100 text-blue-900"
                         }`}
                     >
                       {item.status}
@@ -537,37 +609,172 @@ const Main = () => {
         </div>
       </section>
 
+      {/* Section Jadwal Informasi */}
+      <section className="w-full py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* Judul */}
+          <div className="text-center mb-12">
+            <h2 className="text-xl md:text-3xl font-bold text-blue-900">
+              Informasi & Promo Layanan
+            </h2>
+            <p className="text-gray-500 mt-3">
+              Update terbaru layanan dan promo rumah sakit
+            </p>
+          </div>
+
+          {/* Grid Card */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 px-3 sm:px-6">
+
+            {/* Promo */}
+            <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+              <img
+                src="/image/promo.jpg"
+                alt="Promo Kesehatan"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover"
+              />
+
+              <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <h3 className="text-sm sm:text-lg font-semibold text-blue-900">
+                  🎉 Promo
+                </h3>
+
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 flex-grow">
+                  Diskon hingga 20% pemeriksaan kesehatan.
+                </p>
+
+                <a
+                  href="https://wa.me/6285712205373"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
+                >
+                  WhatsApp
+                </a>
+              </div>
+            </div>
+
+            {/* Vaksin */}
+            <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+              <img
+                src="/image/vaksin.jpg"
+                alt="Layanan Vaksin"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover"
+              />
+
+              <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <h3 className="text-sm sm:text-lg font-semibold text-blue-900">
+                  💉 Vaksin
+                </h3>
+
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 flex-grow">
+                  Vaksin anak & dewasa tersedia.
+                </p>
+
+                <a
+                  href="https://wa.me/6285712205373"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
+                >
+                  Daftar
+                </a>
+              </div>
+            </div>
+
+            {/* MCU */}
+            <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+              <img
+                src="/image/mcu.jpg"
+                alt="Medical Check Up"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover"
+              />
+
+              <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <h3 className="text-sm sm:text-lg font-semibold text-blue-900">
+                  🩺 MCU
+                </h3>
+
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 flex-grow">
+                  Paket MCU lengkap tersedia.
+                </p>
+
+                <a
+                  href="https://wa.me/6285712205373"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
+                >
+                  Info
+                </a>
+              </div>
+            </div>
+
+            {/* Layanan */}
+            <div className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden flex flex-col">
+              <img
+                src="/image/layanan.jpg"
+                alt="Layanan Lainnya"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover"
+              />
+
+              <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <h3 className="text-sm sm:text-lg font-semibold text-blue-900">
+                  📋 Lainnya
+                </h3>
+
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 flex-grow">
+                  Rawat inap & lab tersedia.
+                </p>
+
+                <a
+                  href="https://wa.me/6285712205373"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
+                >
+                  Konsultasi
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      
+
       {selectedPoli && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-3 sm:p-4">
           
-          <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 relative">
+          <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto">
 
             {/* Close */}
             <button
               onClick={() => setSelectedPoli(null)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
+              className="absolute top-2 right-2 sm:top-3 sm:right-3 text-gray-500 hover:text-red-500 text-lg sm:text-xl"
             >
               ✕
             </button>
 
             {/* Header */}
-            <div className="text-center mb-6">
-              <div className="text-5xl mb-2">
+            <div className="text-center mb-4 sm:mb-6">
+              <div className="text-4xl sm:text-5xl mb-2">
                 {selectedPoli.icon}
               </div>
 
-              <h2 className="text-2xl font-bold text-blue-900">
+              <h2 className="text-xl sm:text-2xl font-bold text-blue-900">
                 {selectedPoli.nama}
               </h2>
 
-              <p className="text-gray-600 mt-1">
+              <p className="text-gray-600 mt-1 text-sm sm:text-base">
                 {selectedPoli.deskripsi}
               </p>
             </div>
 
             {/* Dokter */}
             <div className="mb-4">
-              <h3 className="font-bold text-gray-800 mb-2">
+              <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">
                 👨‍⚕️ Dokter
               </h3>
 
@@ -579,8 +786,8 @@ const Main = () => {
             </div>
 
             {/* Jadwal */}
-            <div className="mb-6">
-              <h3 className="font-bold text-gray-800 mb-2">
+            <div className="mb-5 sm:mb-6">
+              <h3 className="font-bold text-gray-800 mb-2 text-sm sm:text-base">
                 🕒 Jadwal Praktek
               </h3>
 
@@ -592,7 +799,7 @@ const Main = () => {
             </div>
 
             {/* Button */}
-            <button className="w-full py-3 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-800 transition">
+            <button className="w-full py-2.5 sm:py-3 bg-blue-900 text-white rounded-xl font-semibold text-sm sm:text-base hover:bg-blue-800 transition">
               Buat Janji Sekarang
             </button>
 
