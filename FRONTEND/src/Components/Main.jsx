@@ -221,7 +221,7 @@ const poliklinik = [
   },
   {
     id: 9,
-    nama: "Poli eek",
+    nama: "Poli HAi",
     deskripsi: "Kesehatan jantung",
     icon: "❤️",
     dokter: [
