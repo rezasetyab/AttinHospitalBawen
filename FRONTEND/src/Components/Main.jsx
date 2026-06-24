@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 
 const layanan = [
   {
-    nama: "Vaksin Internasional",
-    deskripsi: "Melayani dengan Senang Hati",
+    nama: "Vaksinasi Aman, Nyaman, dan Terpercaya",
+    deskripsi: "Lindungi diri dan keluarga dengan layanan vaksinasi profesional di rumah sakit kami. Didukung tenaga medis berpengalaman, fasilitas modern, dan proses cepat tanpa ribet, kami siap memberikan perlindungan optimal dengan rasa aman dan nyaman.",
     image: "/image/Farmasi.jpg",
   },
   {
@@ -423,7 +423,7 @@ const Main = () => {
             <button
               onClick={() => setShowLayan(!showLayan)}
               className="px-6 py-3 bg-blue-900 text-white rounded-xl font-semibold hover:bg-blue-800 transition"              >
-                {showLayan ? "Tampilkan Sedikit" : "Lihat Semua Poliklinik"}
+                {showLayan ? "Tampilkan Sedikit" : "Lihat Semua Layanan"}
             </button>
           </div>
         )}
@@ -644,7 +644,7 @@ const Main = () => {
                 </p>
 
                 <a
-                  href="https://wa.me/6285712205373"
+                  href="https://wa.me/6282135916988"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
@@ -672,7 +672,7 @@ const Main = () => {
                 </p>
 
                 <a
-                  href="https://wa.me/6285712205373"
+                  href="https://wa.me/6282135916988"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
@@ -700,7 +700,7 @@ const Main = () => {
                 </p>
 
                 <a
-                  href="https://wa.me/6285712205373"
+                  href="https://wa.me/6282135916988"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
@@ -728,7 +728,7 @@ const Main = () => {
                 </p>
 
                 <a
-                  href="https://wa.me/6285712205373"
+                  href="https://wa.me/6282135916988"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-full text-center bg-blue-900 text-white py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm hover:bg-slate-400 transition"
