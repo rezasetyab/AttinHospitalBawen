@@ -221,8 +221,8 @@ const poliklinik = [
   },
   {
     id: 9,
-    nama: "Poli HAi",
-    deskripsi: "Kesehatan jantung",
+    nama: "Poli THT",
+    deskripsi: "Kesehatan",
     icon: "❤️",
     dokter: [
       "drg. Rina Putri",
@@ -329,18 +329,32 @@ const Main = () => {
 
             {/* Button */}
             <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center lg:justify-start">
-              <button className="px-6 py-3 bg-blue-900 hover:bg-blue-800 transition rounded-xl text-white font-semibold w-full sm:w-auto">
+              <button 
+                onClick={() => {
+                  const phoneNumber = "6282135916988";
+                  const message = encodeURIComponent("Halo At-Tin Hospital, saya ingin membuat janji berobat.");
+                  window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+                }}
+                className="px-6 py-3 bg-blue-900 hover:bg-blue-800 transition rounded-xl text-white font-semibold w-full sm:w-auto"
+              >
                 Buat Janji
               </button>
 
-              <button className="px-6 py-3 border border-white hover:bg-white hover:text-black transition rounded-xl font-semibold w-full sm:w-auto">
+              <button 
+                onClick={() => {
+                  document.getElementById('layanan')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-6 py-3 border border-white hover:bg-white hover:text-black transition rounded-xl font-semibold w-full sm:w-auto"
+              >
                 Lihat Layanan
               </button>
             </div>
 
-            <p className="mt-6 font-semibold text-sm sm:text-base">
-              IGD 24 JAM ( +62 821 3591 6988 )
-            </p>
+            <div className="mt-6 font-semibold text-sm sm:text-base flex flex-col">
+              <span>Pendaftaran Poli / Info Rawat Inap ( +62 821 3591 6988 )</span>
+              <span>IGD / Kegawat Daruratan ( +62 821 3027 5679 )</span>
+              <span>Humas / Kendala BPJS ( +62 811 2729 927 )</span>
+            </div>
 
             <p className="text-xs sm:text-sm text-gray-200">
               Alamat : Jl. Slamet Riyadi No.14 ...
@@ -373,7 +387,7 @@ const Main = () => {
       </section>
 
       {/* Section Layanan */}
-      <section className="w-full py-20 bg-gray-50">
+      <section id="layanan" className="w-full py-20 bg-gray-50">
         {/* Judul */}
         <div className="text-center mb-12">
           <h1 className="text-xl md:text-3xl font-bold text-blue-900">
